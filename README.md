@@ -32,6 +32,14 @@ export TROPO_PORT=3000 # port to run the server on
 
 Simply do ./build.sh within the package. All executables will then be in the /pkg dirctory within the project.
 
+## Tropo script example
+
+```ruby
+startCallRecording "http://your-host.com/recordings/${currentCall.sessionId}.mp3", :format => "audio/mp3"
+say 'Hello world'
+stopCallRecording
+```
+
 ## License
 
 The MIT License (MIT)
