@@ -30,7 +30,22 @@ export TROPO_PORT=3000 # port to run the server on
 
 ## Building
 
-Simply do ./build.sh within the package. All executables will then be in the /pkg dirctory within the project.
+Simply do:
+
+```
+./build.sh 
+```
+
+within the project. All executables will then be in the /pkg dirctory within the project. Of course you do need to have [Go](https://golang.org/doc/install) installed along with bootstrapping for cross platform compiling:
+
+```
+cd /path/to/go/src
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 ./make.bash
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 ./make.bash
+CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 ./make.bash
+```
+
+Of course you may skip the step for your own OS you originally compiled/installed for.
 
 ## Tropo script example
 
