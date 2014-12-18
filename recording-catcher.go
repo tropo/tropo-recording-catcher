@@ -24,24 +24,21 @@ var (
 
 func init() {
 	// gets all of the environment variables to be set
-	tropoAWSKey = os.Getenv("TROPO_AWS_KEY")
-	if tropoAWSKey == "" {
-		log.Fatal("Environment varialbe TROPO_AWS_KEY must be set.")
-	}
-	tropoAWSSecret = os.Getenv("TROPO_AWS_SECRET")
-	if tropoAWSKey == "" {
-		log.Fatal("Environment varialbe TROPO_AWS_SECRET must be set.")
-	}
-	tropoAWSBucket = os.Getenv("TROPO_AWS_BUCKET")
-	if tropoAWSBucket == "" {
-		log.Fatal("Environment varialbe TROPO_AWS_BUCKET must be set.")
-	}
-	tropoPort = os.Getenv("TROPO_PORT")
-	if tropoPort == "" {
-		log.Fatal("Environment varialbe TROPO_PORT must be set.")
-	}
+	tropoAWSKey = setConfig("TROPO_AWS_KEY")
+	tropoAWSSecret = setConfig("TROPO_AWS_SECRET")
+	tropoAWSBucket = setConfig("TROPO_AWS_BUCKET")
+	tropoPort = setConfig("TROPO_PORT")
 	s3Domain = tropoAWSBucket + ".s3.amazonaws.com"
 	s3URL = "https://" + s3Domain
+}
+
+// sets the config params and exits if one does not exist
+func setConfig(name string) string {
+	value := os.Getenv(name)
+	if value == "" {
+		log.Fatal("Environment varialbe " + name + " must be set.")
+	}
+	return value
 }
 
 func main() {
